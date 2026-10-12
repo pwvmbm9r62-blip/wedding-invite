@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#dce8f5" />
+  <title>Дарья & Евгений — приглашение</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#eef4fb;
+      --sky-top:#d6e6f5;
+      --sky-mid:#edf5fb;
+      --sky-bottom:#fbfdff;
+      --ink:#243244;
+      --muted:#66788d;
+      --blue:#89a8c7;
+      --blue-deep:#5e7d9f;
+      --frost:#dfeaf6;
+      --card:#ffffffcc;
+      --line:rgba(76,104,132,.14);
+      --shadow:0 24px 60px rgba(77,100,125,.14);
+      --gold:#bca87b;
+      --snow:rgba(255,255,255,.9);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.85), transparent 20%),
+        linear-gradient(180deg,var(--sky-top) 0%, var(--sky-mid) 34%, var(--sky-bottom) 100%);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.65) 0 1.4px, transparent 1.5px) 0 0/180px 180px,
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.55) 0 1px, transparent 1.1px) 0 0/140px 140px,
+        radial-gradient(circle at 30% 80%, rgba(255,255,255,.6) 0 1px, transparent 1.1px) 0 0/220px 220px;
+      opacity:.6;
+    }
+
+    .container{
+      width:min(100%, 920px);
+      margin:0 auto;
+      padding:0 16px 70px;
+      position:relative;
+      z-index:2;
+    }
+
+    /* Snow */
+    .snow{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:5;
+    }
+    .snow span{
+      position:absolute;
+      top:-10vh;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--snow);
+      filter:blur(.2px);
+      opacity:.9;
+      animation:fall linear infinite;
+    }
+    .snow span.small{width:4px;height:4px;opacity:.75}
+    .snow span.big{width:10px;height:10px;opacity:1}
+    @keyframes fall{
+      0%{transform:translate3d(0,-10vh,0) scale(1)}
+      100%{transform:translate3d(var(--drift),110vh,0) scale(.92)}
+    }
+
+    /* Hero */
+    .hero{
+      min-height:100svh;
+      display:grid;
+      align-items:center;
+      padding:28px 0 24px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:auto auto 6% -90px;
+      width:260px;height:260px;
+      border-radius:50%;
+      background:rgba(255,255,255,.22);
+      filter:blur(2px);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-70px;
+      top:70px;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      border:1px solid rgba(158,180,204,.18);
+    }
+
+    .hero-wrap{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:22px;
+      align-items:center;
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.66), rgba(255,255,255,.50));
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow:var(--shadow);
+      border-radius:34px;
+      padding:28px 24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      width:170px;height:170px;
+      right:-55px;top:-55px;
+      border-radius:50%;
+      background:linear-gradient(180deg, rgba(201,220,238,.36), rgba(255,255,255,0));
+    }
+
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.28em;
+      font-size:11px;
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+
+    .names{
+      font-family:"Cormorant Garamond", serif;
+      font-size: clamp(52px, 8vw, 86px);
+      line-height:.9;
+      font-weight:500;
+      margin:0;
+      color:#213246;
+      text-shadow:0 1px 0 rgba(255,255,255,.55);
+    }
+
+    .and{
+      display:inline-block;
+      color:var(--blue-deep);
+      font-size:.95em;
+      margin:4px 0;
+    }
+
+    .sub{
+      margin:18px 0 10px;
+      font-size:17px;
+      line-height:1.7;
+      color:#516377;
+      max-width:490px;
+    }
+
+    .date-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:11px 16px;
+      border-radius:999px;
+      border:1px solid rgba(94,125,159,.15);
+      background:rgba(255,255,255,.72);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#425567;
+      margin-top:10px;
+    }
+
+    .scroll-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-top:22px;
+      padding:14px 18px;
+      text-decoration:none;
+      color:#fff;
+      background:linear-gradient(180deg,#7ea1c4,#6286ab);
+      border-radius:999px;
+      font-size:13px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      box-shadow:0 10px 22px rgba(98,134,171,.28);
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .scroll-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 28px rgba(98,134,171,.34);
+    }
+
+    /* Palace illustration */
+    .palace-scene{
+      position:relative;
+      height:580px;
+      border-radius:38px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 70% 12%, rgba(255,255,255,.9), transparent 25%),
+        linear-gradient(180deg, #d1e2f3 0%, #e8f1f9 36%, #f7fbff 100%);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.7);
+    }
+    .moon{
+      position:absolute;
+      top:52px; right:62px;
+      width:76px;height:76px;
+      border-radius:50%;
+      background:radial-gradient(circle at 35% 30%, #ffffff 0%, #f9fdff 48%, #eaf2f9 100%);
+      box-shadow:0 0 34px rgba(255,255,255,.65);
+    }
+    .palace-svg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+    }
+    .scene-caption{
+      position:absolute;
+      left:28px;
+      bottom:22px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(96,122,143,.10);
+      backdrop-filter: blur(6px);
+      color:#52667a;
+      font-size:12px;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    /* Sections */
+    section.info{
+      margin-top:18px;
+      position:relative;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.68));
+      backdrop-filter: blur(9px);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.8);
+      overflow:hidden;
+    }
+    .section-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+    }
+    .pane{
+      padding:30px 24px;
+      position:relative;
+    }
+    .pane + .pane{
+      border-left:1px solid var(--line);
+    }
+
+    .section-title{
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:.25em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+    .big-num{
+      font-family:"Cormorant Garamond", serif;
+      font-size:110px;
+      line-height:.75;
+      margin:0;
+      color:#223346;
+    }
+    .month{
+      font-family:"Cormorant Garamond", serif;
+      font-size:32px;
+      margin:12px 0 0;
+    }
+    .year{
+      margin-top:4px;
+      color:#72869a;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+    .city{
+      font-family:"Cormorant Garamond", serif;
+      font-size:42px;
+      margin:0 0 12px;
+      color:#26384a;
+    }
+    .text{
+      margin:0;
+      line-height:1.8;
+      color:#526577;
+      font-size:15px;
+    }
+
+    .invitation-text{
+      padding:38px 30px;
+      text-align:center;
+      background:
+        radial-gradient(circle at left top, rgba(217,231,244,.4), transparent 18%),
+        linear-gradient(135deg, rgba(255,255,255,.85), rgba(243,248,252,.78));
+    }
+    .invitation-text p{
+      margin:0 auto;
+      max-width:720px;
+      font-family:"Cormorant Garamond", serif;
+      font-size:40px;
+      line-height:1.25;
+      color:#243547;
+    }
+
+    .timeline{
+      padding:8px 0 0;
+      position:relative;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:24px;
+      top:12px;
+      bottom:12px;
+      width:1px;
+      background:linear-gradient(180deg, rgba(94,125,159,.65), rgba(94,125,159,.05));
+    }
+    .event{
+      position:relative;
+      padding-left:54px;
+      margin-bottom:24px;
+    }
+    .event:last-child{margin-bottom:0}
+    .event::before{
+      content:"";
+      position:absolute;
+      left:18px; top:6px;
+      width:13px;height:13px;
+      border-radius:50%;
+      background:#fff;
+      border:3px solid var(--blue-deep);
+      box-shadow:0 0 0 6px rgba(137,168,199,.12);
+    }
+    .event-time{
+      font-family:"Cormorant Garamond", serif;
+      font-size:42px;
+      line-height:.9;
+      color:#233548;
+      margin:0 0 6px;
+    }
+    .event-name{
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:600;
+      color:#42586c;
+      margin-bottom:5px;
+    }
+    .event-note{
+      color:#5d7185;
+      line-height:1.7;
+      font-size:15px;
+    }
+    .badge{
+      display:inline-block;
+      margin-top:8px;
+      border-radius:999px;
+      background:#e8f1f8;
+      color:#637d94;
+      padding:6px 10px;
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .dress{
+      background:
+        radial-gradient(circle at 88% 12%, rgba(219,231,240,.72), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(247,251,255,.80));
+    }
+    .dress h2,
+    .rsvp h2{
+      font-family:"Cormorant Garamond", serif;
+      font-size:44px;
+      line-height:1;
+      font-weight:500;
+      margin:8px 0 16px;
+      color:#294052;
+    }
+
+    .swatches{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+      align-items:center;
+    }
+    .swatch{
+      width:38px;height:38px;border-radius:50%;
+      border:4px solid #fff;
+      box-shadow:0 3px 10px rgba(0,0,0,.06);
+    }
+    .swatch-labels{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:14px;
+    }
+    .swatch-labels span{
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      color:#62778d;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(97,124,146,.08);
+    }
+
+    .rsvp{
+      text-align:center;
+      padding:38px 24px 42px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.62), transparent 18%),
+        linear-gradient(160deg, rgba(221,235,247,.96), rgba(241,247,252,.98));
+    }
+    .rsvp .deadline{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(94,125,159,.12);
+      font-family:"Cormorant Garamond", serif;
+      font-size:30px;
+      color:#344d61;
+      margin-top:4px;
+    }
+    .footer{
+      text-align:center;
+      padding:24px 0 10px;
+      color:#7a8da0;
+      font-size:14px;
+      letter-spacing:.08em;
+    }
+
+    @media (max-width: 820px){
+      .hero-wrap{grid-template-columns:1fr}
+      .palace-scene{height:500px}
+    }
+
+    @media (max-width: 680px){
+      .section-grid{grid-template-columns:1fr}
+      .pane + .pane{border-left:none;border-top:1px solid var(--line)}
+      .big-num{font-size:92px}
+      .city{font-size:36px}
+      .invitation-text p{font-size:34px}
+    }
+
+    @media (max-width: 460px){
+      .hero-card{padding:24px 20px}
+      .names{font-size:58px}
+      .sub{font-size:15px}
+      .palace-scene{height:430px}
+      .invitation-text p{font-size:30px}
+      .dress h2,.rsvp h2{font-size:38px}
+      .event-time{font-size:36px}
+      .section-grid .pane{padding:24px 20px}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .snow span{animation:none}
+      .scroll-btn{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="snow" aria-hidden="true" id="snow"></div>
+
+  <div class="container">
+    <header class="hero">
+      <div class="hero-wrap">
+        <div class="hero-card">
+          <div class="eyebrow">электронное приглашение</div>
+          <h1 class="names">Дарья <span class="and">&</span><br>Евгений</h1>
+          <p class="sub">
+            Приглашаем вас разделить с нами зимний день, в который начнётся наша семья.
+            Мы очень хотим провести этот вечер в кругу самых близких.
+          </p>
+          <div class="date-chip">05 декабря 2026 • Москва</div><br>
+          <a class="scroll-btn" href="#invite">Открыть приглашение</a>
+        </div>
+
+        <div class="palace-scene">
+          <div class="moon"></div>
+          <svg class="palace-svg" viewBox="0 0 700 580" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="snowfield" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#f8fbff"/>
+                <stop offset="100%" stop-color="#dfeaf5"/>
+              </linearGradient>
+              <linearGradient id="palaceBody" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#fcfdff"/>
+                <stop offset="100%" stop-color="#eef4fa"/>
+              </linearGradient>
+              <linearGradient id="roof" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#bccfe0"/>
+                <stop offset="100%" stop-color="#95acc0"/>
+              </linearGradient>
+            </defs>
+
+            <rect x="0" y="430" width="700" height="150" fill="url(#snowfield)"/>
+            <ellipse cx="350" cy="463" rx="280" ry="46" fill="#f8fbff"/>
+            <ellipse cx="180" cy="478" rx="150" ry="30" fill="#edf4fb"/>
+            <ellipse cx="560" cy="485" rx="130" ry="24" fill="#edf4fb"/>
+
+            <!-- trees -->
+            <g opacity="0.92">
+              <g transform="translate(82,315)">
+                <polygon points="30,0 0,42 17,42 -6,75 16,75 -15,116 75,116 44,75 67,75 44,42 61,42" fill="#c8d9e8"/>
+                <rect x="26" y="116" width="8" height="26" fill="#bfa57c"/>
+              </g>
+              <g transform="translate(155,332) scale(.82)">
+                <polygon points="30,0 0,42 17,42 -6,75 16,75 -15,116 75,116 44,75 67,75 44,42 61,42" fill="#d3e1ee"/>
+                <rect x="26" y="116" width="8" height="26" fill="#bfa57c"/>
+              </g>
+              <g transform="translate(560,325)">
+                <polygon points="30,0 0,42 17,42 -6,75 16,75 -15,116 75,116 44,75 67,75 44,42 61,42" fill="#c8d9e8"/>
+                <rect x="26" y="116" width="8" height="26" fill="#bfa57c"/>
+              </g>
+              <g transform="translate(615,344) scale(.78)">
+                <polygon points="30,0 0,42 17,42 -6,75 16,75 -15,116 75,116 44,75 67,75 44,42 61,42" fill="#d3e1ee"/>
+                <rect x="26" y="116" width="8" height="26" fill="#bfa57c"/>
+              </g>
+            </g>
+
+            <!-- palace shadow -->
+            <rect x="144" y="228" width="412" height="182" rx="14" fill="#d8e5f0" opacity=".45"/>
+
+            <!-- palace main -->
+            <rect x="160" y="210" width="380" height="190" rx="10" fill="url(#palaceBody)" stroke="#d6e2ed"/>
+            <rect x="245" y="150" width="210" height="80" rx="8" fill="url(#palaceBody)" stroke="#d6e2ed"/>
+            <rect x="220" y="136" width="260" height="20" rx="6" fill="#a9bfd2"/>
+            <polygon points="350,74 378,128 322,128" fill="url(#roof)"/>
+            <rect x="340" y="46" width="20" height="36" rx="4" fill="#9db5c8"/>
+            <circle cx="350" cy="42" r="6" fill="#d4e3ef"/>
+
+            <!-- side towers -->
+            <g>
+              <rect x="126" y="184" width="64" height="216" rx="8" fill="url(#palaceBody)" stroke="#d6e2ed"/>
+              <rect x="510" y="184" width="64" height="216" rx="8" fill="url(#palaceBody)" stroke="#d6e2ed"/>
+              <polygon points="158,130 188,184 128,184" fill="url(#roof)"/>
+              <polygon points="542,130 572,184 512,184" fill="url(#roof)"/>
+              <rect x="150" y="106" width="16" height="30" rx="4" fill="#9db5c8"/>
+              <rect x="534" y="106" width="16" height="30" rx="4" fill="#9db5c8"/>
+              <circle cx="158" cy="102" r="5" fill="#d4e3ef"/>
+              <circle cx="542" cy="102" r="5" fill="#d4e3ef"/>
+            </g>
+
+            <!-- columns -->
+            <g fill="#f8fbfe" stroke="#d7e1eb">
+              <rect x="205" y="230" width="28" height="145" rx="8"/>
+              <rect x="260" y="230" width="28" height="145" rx="8"/>
+              <rect x="315" y="230" width="28" height="145" rx="8"/>
+              <rect x="370" y="230" width="28" height="145" rx="8"/>
+              <rect x="425" y="230" width="28" height="145" rx="8"/>
+              <rect x="480" y="230" width="28" height="145" rx="8"/>
+            </g>
+
+            <!-- windows -->
+            <g fill="#e8f1f8" stroke="#cad8e4">
+              <rect x="180" y="235" width="18" height="34" rx="7"/>
+              <rect x="180" y="283" width="18" height="34" rx="7"/>
+              <rect x="180" y="331" width="18" height="34" rx="7"/>
+
+              <rect x="522" y="235" width="18" height="34" rx="7"/>
+              <rect x="522" y="283" width="18" height="34" rx="7"/>
+              <rect x="522" y="331" width="18" height="34" rx="7"/>
+
+              <rect x="258" y="164" width="22" height="38" rx="8"/>
+              <rect x="339" y="164" width="22" height="38" rx="8"/>
+              <rect x="420" y="164" width="22" height="38" rx="8"/>
+            </g>
+
+            <!-- central door -->
+            <rect x="327" y="302" width="46" height="80" rx="18" fill="#b3c8d8" stroke="#c6d7e3"/>
+            <circle cx="362" cy="343" r="3" fill="#ffffff"/>
+
+            <!-- stairs -->
+            <g fill="#eef4fa">
+              <rect x="290" y="386" width="120" height="10" rx="5"/>
+              <rect x="278" y="396" width="144" height="11" rx="5"/>
+              <rect x="263" y="407" width="174" height="13" rx="6"/>
+            </g>
+
+            <!-- snow caps -->
+            <g fill="#ffffff" opacity=".9">
+              <rect x="242" y="146" width="216" height="8" rx="4"/>
+              <rect x="158" y="206" width="384" height="8" rx="4"/>
+              <rect x="126" y="180" width="64" height="7" rx="4"/>
+              <rect x="510" y="180" width="64" height="7" rx="4"/>
+            </g>
+          </svg>
+          <div class="scene-caption">зимняя сказка</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="info invitation-text" id="invite">
+      <p>
+        С радостью приглашаем вас разделить с нами этот особенный день —
+        день, когда начинается наша семья.
+      </p>
+    </section>
+
+    <section class="info">
+      <div class="section-grid">
+        <div class="pane">
+          <div class="section-title">дата</div>
+          <p class="big-num">05</p>
+          <div class="month">декабря</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="pane">
+          <div class="section-title">город</div>
+          <div class="city">Москва</div>
+          <p class="text">
+            Наш день начнётся с регистрации и продолжится тёплым камерным
+            вечером с самыми близкими.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info">
+      <div class="section-grid">
+        <div class="pane">
+          <div class="section-title">тайминг</div>
+          <div class="timeline">
+            <div class="event">
+              <div class="event-time">13:00</div>
+              <div class="event-name">Регистрация</div>
+              <div class="event-note">Таганский ЗАГС</div>
+              <span class="badge">по желанию</span>
+            </div>
+            <div class="event">
+              <div class="event-time">15:00</div>
+              <div class="event-name">Сбор гостей</div>
+              <div class="event-note">Mascot Loft</div>
+            </div>
+          </div>
+        </div>
+        <div class="pane dress">
+          <div class="section-title">dress code</div>
+          <h2>Однотонные образы</h2>
+          <p class="text">
+            Будем рады однотонным образам в любимых оттенках 🤍<br>
+            Просим избегать активных принтов.
+          </p>
+
+          <div class="swatches" aria-hidden="true">
+            <span class="swatch" style="background:#f6f1ea"></span>
+            <span class="swatch" style="background:#ddd3c8"></span>
+            <span class="swatch" style="background:#cfdde8"></span>
+            <span class="swatch" style="background:#94a9ba"></span>
+            <span class="swatch" style="background:#a68476"></span>
+            <span class="swatch" style="background:#7e5a64"></span>
+          </div>
+
+          <div class="swatch-labels">
+            <span>молочный</span>
+            <span>бежевый</span>
+            <span>пыльно-голубой</span>
+            <span>серо-голубой</span>
+            <span>тауп</span>
+            <span>приглушённый винный</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info rsvp">
+      <div class="section-title">ответ гостя</div>
+      <h2>Подтвердите, пожалуйста,<br>ваше присутствие</h2>
+      <div class="deadline">до 15.10.2026</div>
+      <p class="text" style="max-width:520px;margin:16px auto 0;">
+        Так нам будет проще всё красиво спланировать и подготовить
+        для вас этот вечер.
+      </p>
+    </section>
+
+    <div class="footer">Дарья & Евгений • 05.12.2026</div>
+  </div>
+
+  <script>
+    // Snow generation
+    const snow = document.getElementById('snow');
+    const amount = 54;
+    for (let i = 0; i < amount; i++) {
+      const flake = document.createElement('span');
+      const sizeRoll = Math.random();
+      if (sizeRoll < .35) flake.classList.add('small');
+      if (sizeRoll > .8) flake.classList.add('big');
+      flake.style.left = Math.random() * 100 + 'vw';
+      flake.style.opacity = 0.35 + Math.random() * 0.65;
+      flake.style.animationDuration = 10 + Math.random() * 12 + 's';
+      flake.style.animationDelay = -Math.random() * 20 + 's';
+      flake.style.setProperty('--drift', ((Math.random() * 120) - 60) + 'px');
+      snow.appendChild(flake);
+    }
+  </script>
+</body>
+</html>
